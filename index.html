@@ -220,11 +220,11 @@
             </div>
         </noscript>
         <div id="p-0" class="main">
-            <div id="s-1" class="current">
+            <div id="s-1" is="default" class="current">
                 <header id="s-1-0">
                     <h2>Blrsome Link Redirect</h2>
                 </header>
-                <span id="s-1-1" class="message">(hereinafter referred to as BLR)<hr>BLR is used for the purpose of displaying a cautionary phrase when accessing an external page from Blrso.me or during other uses.<hr><a href="https://blr.kr/https://example.com/" class="btn">https://blr.kr/https://example.com/</a></span>
+                <span id="s-1-1" class="message">(hereinafter referred to as BLR)<hr>BLR is used for the purpose of displaying a cautionary phrase when accessing an external page from Blrso.me or during other uses.<hr><a href="https://blr.kr" class="btn">https://blr.kr/https://blr.kr</a></span>
             </div>
             <div id="s-2" is="return error">
                 <header id="s-2-0">
@@ -277,6 +277,7 @@
                         case 'b': case 'e': case '!': t = 'error'; break
                         case 'r': case '>': t = 'redirect'; break
                         default: break }
+                    Array.isArray(q) && (t = 'default')
                     q && t && (
                         document.querySelectorAll('#p-0>[id^=s-]').forEach(t => t.classList.remove('current')),
                         document.querySelector(`[is*=${t}]`).classList.add('current')),
