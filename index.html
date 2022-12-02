@@ -111,7 +111,7 @@
                 filter: drop-shadow(0 0 8px var(--shadow-6))
             }
             .highlight > svg:last-child > polygon {
-                fill: var(--highlight-1)
+                fill: var(--highlight-1) !important
             }
             noscript, .main {
                 display: flex;
@@ -270,7 +270,7 @@
                     const u = new URL(location),
                         l = /^(file:\/{3})?(\/)?\w:/.test(u.href),
                         r = d(u.href.substring((!l ? u.origin : `${u.protocol}//${u.pathname}`).length).replace(/^\/|\/$/, '')),
-                        q = r[2],
+                        q = r[2] || r,
                         s = new URLSearchParams(r[0])
                     let t = (s.has('t') ? s.get('t') : s.has('type') && s.get('type')) || 'redirect'
                     switch(t) {
