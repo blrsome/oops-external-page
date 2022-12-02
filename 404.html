@@ -274,7 +274,7 @@
                         q = r[2] || p || void 0,
                         s = new URLSearchParams(r[0])
                     let t = (s.has('t') ? s.get('t') : s.has('type') && s.get('type'))
-                        || q ? 'redirect' : 'default'
+                        || (q ? 'redirect' : 'default')
                     switch(t) {
                         case 'b': case 'e': case '!': t = 'error'; break
                         case 'r': case '>': t = 'redirect'; break
