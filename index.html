@@ -258,39 +258,41 @@
             </svg>
         </div>
         <script>
-            document.querySelectorAll('noscript').forEach(t => t.remove())
-            !function() {
-                function d(t) {
-                    return t.split(/(\/)((http(s)?)?:\/{2}.+)/)
-                        .map((t, i) => {
-                            !/^\?/.test(t) && i === 0 && (t = '')
-                            return t })
-                }
-                const u = new URL(location),
-                    l = /^(file:\/{3})?(\/)?\w:/.test(u.href),
-                    r = d(u.href.substring((!l ? u.origin : `${u.protocol}//${u.pathname}`).length).replace(/\/$/, '')),
-                    q = r[2],
-                    s = new URLSearchParams(r[0])
-                let t = (s.has('t') ? s.get('t') : s.has('type') && s.get('type')) || 'redirect'
-                switch(t) {
-                    case 'b': case 'e': case '!': t = 'error'; break
-                    case 'r': case '>': t = 'redirect'; break
-                    default: break }
-                q && t && (
-                    document.querySelectorAll('#p-0>[id^=s-]').forEach(t => t.classList.remove('current')),
-                    document.querySelector(`[is*=${t}]`).classList.add('current')),
-                    document.querySelectorAll('.btn[data-to]').forEach(t => (
-                        t.dataset.to = q,
-                        t.onclick = e => location.href = t.dataset.to))
-            }()
-            !function(t, a) {
-                document.querySelectorAll(t).forEach(t =>
-                    t.setAttribute('points', t.getAttribute('points').replace(/\$0/g,
-                        parseFloat(
-                            getComputedStyle(document.documentElement)
-                                .getPropertyValue(a).replace(/[^\d.]/g, ''))
-                        * parseFloat(getComputedStyle(document.documentElement).fontSize))))
-            }('.highlight svg>polygon', '--highlight-ca-height')
+            self.addEventListener('load', t => {
+                document.querySelectorAll('noscript').forEach(t => t.remove())
+                !function() {
+                    function d(t) {
+                        return t.split(/(\/)((http(s)?)?:\/{2}.+)/)
+                            .map((t, i) => {
+                                !/^\?/.test(t) && i === 0 && (t = '')
+                                return t })
+                    }
+                    const u = new URL(location),
+                        l = /^(file:\/{3})?(\/)?\w:/.test(u.href),
+                        r = d(u.href.substring((!l ? u.origin : `${u.protocol}//${u.pathname}`).length).replace(/\/$/, '')),
+                        q = r[2],
+                        s = new URLSearchParams(r[0])
+                    let t = (s.has('t') ? s.get('t') : s.has('type') && s.get('type')) || 'redirect'
+                    switch(t) {
+                        case 'b': case 'e': case '!': t = 'error'; break
+                        case 'r': case '>': t = 'redirect'; break
+                        default: break }
+                    q && t && (
+                        document.querySelectorAll('#p-0>[id^=s-]').forEach(t => t.classList.remove('current')),
+                        document.querySelector(`[is*=${t}]`).classList.add('current')),
+                        document.querySelectorAll('.btn[data-to]').forEach(t => (
+                            t.dataset.to = q,
+                            t.onclick = e => location.href = t.dataset.to))
+                }()
+                !function(t, a) {
+                    document.querySelectorAll(t).forEach(t =>
+                        t.setAttribute('points', t.getAttribute('points').replace(/\$0/g,
+                            parseFloat(
+                                getComputedStyle(document.documentElement)
+                                    .getPropertyValue(a).replace(/[^\d.]/g, ''))
+                            * parseFloat(getComputedStyle(document.documentElement).fontSize))))
+                }('.highlight svg>polygon', '--highlight-ca-height')
+            })
         </script>
     </body>
 </html>
