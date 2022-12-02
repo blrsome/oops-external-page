@@ -103,7 +103,7 @@
                 position: absolute
             }
             .highlight > svg > polygon {
-                fill: var(--highlight-0);
+                fill: var(--highlight-0) !important;
                 filter: contrast(.45)
             }
             .highlight > svg:last-child {
@@ -269,7 +269,7 @@
                     }
                     const u = new URL(location),
                         l = /^(file:\/{3})?(\/)?\w:/.test(u.href),
-                        r = d(u.href.substring((!l ? u.origin : `${u.protocol}//${u.pathname}`).length).replace(/\/$/, '')),
+                        r = d(u.href.substring((!l ? u.origin : `${u.protocol}//${u.pathname}`).length).replace(/^\/|\/$/, '')),
                         q = r[2],
                         s = new URLSearchParams(r[0])
                     let t = (s.has('t') ? s.get('t') : s.has('type') && s.get('type')) || 'redirect'
