@@ -269,15 +269,17 @@
                     }
                     const u = new URL(location),
                         l = /^(file:\/{3})?(\/)?\w:/.test(u.href),
-                        r = d(u.href.substring((!l ? u.origin : `${u.protocol}//${u.pathname}`).length).replace(/^\/|\/$/, '')),
-                        q = r[2] || r,
+                        p = u.href.substring((!l ? u.origin : `${u.protocol}//${u.pathname}`).length).replace(/^\/|\/$/, ''),
+                        r = d(p),
+                        q = r[2] || p || void 0,
                         s = new URLSearchParams(r[0])
-                    let t = (s.has('t') ? s.get('t') : s.has('type') && s.get('type')) || 'redirect'
+                    let t = (s.has('t') ? s.get('t') : s.has('type') && s.get('type'))
+                        || q ? 'redirect' : 'default'
                     switch(t) {
                         case 'b': case 'e': case '!': t = 'error'; break
                         case 'r': case '>': t = 'redirect'; break
+                        case 'd': case '.': t = 'default'; break
                         default: break }
-                    Array.isArray(q) && (t = 'default')
                     q && t && (
                         document.querySelectorAll('#p-0>[id^=s-]').forEach(t => t.classList.remove('current')),
                         document.querySelector(`[is*=${t}]`).classList.add('current')),
